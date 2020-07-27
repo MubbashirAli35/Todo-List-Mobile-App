@@ -3,7 +3,8 @@ import { View,
          Text,
          TextInput,
          StyleSheet,
-         StatusBar
+         StatusBar,
+         Dimensions
        } from 'react-native';
 
 import { Button } from 'react-native-elements';
@@ -11,6 +12,7 @@ import { Button } from 'react-native-elements';
 export default function SignIn(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const window = Dimensions.get('window');
 
     return(
         <View style={styles.mainContainer}>
@@ -36,8 +38,17 @@ export default function SignIn(props) {
                 buttonStyle={{ backgroundColor: '#ffffff' }}
                 containerStyle={{ marginTop: 20 }}
                 raised
-                onPress={() => console.log('Email: ' + email + '\nPassword: ' + password)}
+                onPress={() => console.log('Email: ' + email + '\nPassword: ' + password + '\n' + Dimensions.get('window').width + ' x ' + Dimensions.get('window').height)}
                  />
+
+            <View style={{ flexDirection: 'row', marginTop: 130 }} >
+                <Text style={{ color: '#ffffff', fontSize: 17, marginRight: 5 }} >
+                    Haven't registered yet? 
+                </Text>
+                <Text style={{ color: '#000000', fontSize: 17 }} onPress={() => console.log('Takes user to the Sign Up Screen')} >
+                    Sign Up!
+                </Text>
+            </View>
         </View>
     );
 }
@@ -48,8 +59,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#309fba'
+        backgroundColor: '#309fba',
+        paddingTop: 180
     },
     formHeading: {
         fontSize: 35,
