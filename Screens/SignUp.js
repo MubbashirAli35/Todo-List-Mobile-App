@@ -19,12 +19,12 @@ export default function SignUp(props) {
 
             <View style={styles.formContainer}>
                 <Text style={styles.formHeading}>
-                    Sign In
+                    Sign Up
                 </Text>
                 <TextInput style={styles.textInput} 
                     placeholder='Name'
                     autoCapitalize='words'
-                    onChangeText={(email) => setEmail(email)} />
+                    onChangeText={(name) => setName(name)} />
                 <TextInput style={styles.textInput} 
                     placeholder='Email Address'
                     autoCapitalize='none'
@@ -38,7 +38,7 @@ export default function SignUp(props) {
                     titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
                     title='Sign Up' 
                     type='solid'
-                    onPress={() => console.log('Email: ' + email + '\nPassword: ' + password)}
+                    onPress={() => console.log('Name: ' + name + '\nEmail: ' + email + '\nPassword: ' + password)}
                      />
             </View>
 
@@ -46,7 +46,8 @@ export default function SignUp(props) {
                 <Text style={{ fontSize: 20, color: '#fff', marginRight: 5 }}>
                     Already have an account? 
                 </Text>
-                <Text style={{ fontSize: 20, color: '#000' }}>
+                <Text style={{ fontSize: 20, color: '#000' }}
+                    onPress={() => props.navigation.navigate('SignIn')}>
                     Sign In 
                 </Text>
             </View>

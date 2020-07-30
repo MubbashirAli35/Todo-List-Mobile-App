@@ -41,7 +41,8 @@ export default function SignIn(props) {
                 <Text style={{ fontSize: 20, color: '#fff', marginRight: 5 }}>
                     Haven't registered yet? 
                 </Text>
-                <Text style={{ fontSize: 20, color: '#000' }}>
+                <Text style={{ fontSize: 20, color: '#000' }}
+                    onPress={() => {console.log('Move to Sign Up'); props.navigation.navigate('SignUp')}}>
                     Sign Up 
                 </Text>
             </View>
