@@ -1,10 +1,10 @@
 import React from 'react';
 
-import SignIn from './Screens/SignIn';
+import SignUp from './Screens/SignUp';
 
 export default function App() {
   return (
-    <SignIn />
+    <SignUp />
   );
 }
 

@@ -7,8 +7,9 @@ import { View,
 
 import { Button } from 'react-native-elements';
 
-export default function SignIn(props) {
+export default function SignUp(props) {
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,6 +22,10 @@ export default function SignIn(props) {
                     Sign In
                 </Text>
                 <TextInput style={styles.textInput} 
+                    placeholder='Name'
+                    autoCapitalize='words'
+                    onChangeText={(email) => setEmail(email)} />
+                <TextInput style={styles.textInput} 
                     placeholder='Email Address'
                     autoCapitalize='none'
                     onChangeText={(email) => setEmail(email)} />
@@ -31,7 +36,7 @@ export default function SignIn(props) {
                     secureTextEntry={true} />
                 <Button 
                     titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
-                    title='Sign In' 
+                    title='Sign Up' 
                     type='solid'
                     onPress={() => console.log('Email: ' + email + '\nPassword: ' + password)}
                      />
@@ -39,10 +44,10 @@ export default function SignIn(props) {
 
             <View style={styles.bottomText}>
                 <Text style={{ fontSize: 20, color: '#fff', marginRight: 5 }}>
-                    Haven't registered yet? 
+                    Already have an account? 
                 </Text>
                 <Text style={{ fontSize: 20, color: '#000' }}>
-                    Sign Up 
+                    Sign In 
                 </Text>
             </View>
         </View>
