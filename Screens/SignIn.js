@@ -6,8 +6,22 @@ import { View,
         TextInput } from 'react-native';
 
 import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/ActionCreators';
 
-export default function SignIn(props) {
+const mapStateToProps = (state) => {
+    return {
+        users: state.users
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginUser: (email, password) => dispatch(loginUser(email, password))
+    };
+}
+
+function SignIn(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,7 +47,7 @@ export default function SignIn(props) {
                     titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
                     title='Sign In' 
                     type='solid'
-                    onPress={() => console.log('Email: ' + email + '\nPassword: ' + password)}
+                    onPress={() => {console.log('Email: ' + email + '\nPassword: ' + password); props.loginUser(email, password)}}
                      />
             </View>
 
@@ -82,4 +96,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     }
-})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
