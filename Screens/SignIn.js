@@ -6,7 +6,7 @@ import { View,
         TextInput } from 'react-native';
 
 import { Button } from 'react-native-elements';
-import { connect } from 'react-redux';
+/*import { connect } from 'react-redux';
 import { loginUser } from '../redux/ActionCreators';
 
 const mapStateToProps = (state) => {
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loginUser: (email, password) => dispatch(loginUser(email, password))
     };
-}
+} */
 
 function SignIn(props) {
 
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;
