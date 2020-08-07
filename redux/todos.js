@@ -1,38 +1,42 @@
 import * as ActionTypes from './ActionTypes';
 
-export const Users = (state = {
-    isLoading: false, 
+export const Todos = (state = {
+    isLoading: true,
     errMess: null,
-    token: null,
+    todos: []
 }, action) => {
     switch(action.type) {
-        case ActionTypes.REQUEST_LOGIN:
+        case ActionTypes.TODOS_LOADING: {
+            console.log('Hello l');
+
             return {
                 ...state,
                 isLoading: true,
                 errMess: null,
-                token: null
+                todos: []
             };
+        }
 
-        case ActionTypes.LOGIN_SUCCESS: {
-            //console.log('Hello World!');
+        case ActionTypes.ADD_TODOS: {
+            console.log('Hello');
+
             return {
                 ...state,
                 isLoading: false,
                 errMess: null,
-                token: action.payload
+                todos: action.payload
             };
         }
 
-        case ActionTypes.LOGIN_FAILED:
+        case ActionTypes.TODOS_FAILED:
             return {
                 ...state,
-                isLoading: false, 
+                isLoading: false,
                 errMess: action.payload,
-                token: null
+                todos: null
             };
 
         default:
             return state;
     }
-}
+};

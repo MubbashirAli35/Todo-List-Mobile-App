@@ -5,36 +5,41 @@ import { connect } from 'react-redux';
 
 import SignIn from './Screens/SignIn';
 import SignUp from './Screens/SignUp';
-import { loginUser } from './redux/ActionCreators';
+import TodoList from './Screens/TodoList';
+import { loginUser, fetchTodos } from './redux/ActionCreators';
 
-const mapStateToProps = state => {
+/*const mapStateToProps = state => {
     return {
-        users: state.users
+        users: state.users,
+        todos: state.todos
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        loginUser: (email, password) => dispatch(loginUser(email, password))
+        loginUser: (email, password) => dispatch(loginUser(email, password)),
+        fetchTodos: (token) => dispatch(fetchTodos(token))
     };
-};
+}; */
 
-function Main(props) {
+function Main() {
     const StackNavigation = createStackNavigator();
+
+        // const { users, 
+        //         loginUser,
+        //         fetchTodos,
+        //         todos } = props;
 
     return(
         <NavigationContainer>
             <StackNavigation.Navigator initialRouteName='Sign In' 
                 screenOptions={{headerShown: false}}>
-                <StackNavigation.Screen name='SignIn'>
-                    {() => <SignIn {...props} />}
-                </StackNavigation.Screen>
-                <StackNavigation.Screen name='SignUp'>
-                    {() => <SignUp {...props} />}
-                </StackNavigation.Screen>
+                <StackNavigation.Screen name='SignIn' component={SignIn} />
+                <StackNavigation.Screen name='SignUp' component={SignUp} />
+                <StackNavigation.Screen name='TodoList' component={TodoList} />
             </StackNavigation.Navigator>
         </NavigationContainer>
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;

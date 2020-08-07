@@ -6,6 +6,10 @@ import { View,
         TextInput } from 'react-native';
 
 import { Button } from 'react-native-elements';
+import { useDispatch } from 'react-redux'
+
+import { loginUser } from '../redux/ActionCreators';
+
 /*import { connect } from 'react-redux';
 import { loginUser } from '../redux/ActionCreators';
 
@@ -25,6 +29,9 @@ function SignIn(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+
+    const { navigation } = props;
 
     return(
         <View style={styles.mainContainer}>
@@ -47,7 +54,9 @@ function SignIn(props) {
                     titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
                     title='Sign In' 
                     type='solid'
-                    onPress={() => {console.log('Email: ' + email + '\nPassword: ' + password); props.loginUser(email, password)}}
+                    onPress={() => {console.log('Email: ' + email + '\nPassword: ' + password); 
+                        dispatch(loginUser(email, password));
+                        props.navigation.navigate('TodoList')}}
                      />
             </View>
 
@@ -56,7 +65,7 @@ function SignIn(props) {
                     Haven't registered yet? 
                 </Text>
                 <Text style={{ fontSize: 20, color: '#000' }}
-                    onPress={() => {console.log('Move to Sign Up'); props.navigation.navigate('SignUp')}}>
+                    onPress={() => {console.log('Move to Sign Up'); navigation.navigate('SignUp')}}>
                     Sign Up 
                 </Text>
             </View>

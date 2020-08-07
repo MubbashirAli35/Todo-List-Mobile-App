@@ -44,7 +44,7 @@ export const loginUser = (email, password) => (dispatch) => {
             
         
         else {
-            //console.log('error agaya');
+            console.log('error agaya');
             const error = new Error('Error ' + response.status + ': ' + response.statusText);
             error.response = response;
             throw error;
@@ -58,5 +58,59 @@ export const loginUser = (email, password) => (dispatch) => {
     .catch((error) => {
         console.log(error);
         dispatch(loginFailed(error.message));
+    });
+}
+
+export const todosLoading = () => {
+    return {
+        type: ActionTypes.TODOS_LOADING
+    };
+};
+
+export const addTodos = (todos) => {
+    console.log('Todos in Action: ' + JSON.stringify(todos));
+
+    return {
+        type: ActionTypes.ADD_TODOS,
+        payload: todos
+    };
+};
+
+export const todosFailed = (errMess) => {
+    return {
+        type: ActionTypes.TODOS_FAILED,
+        payload: errMess
+    };
+};
+
+export const fetchTodos = (token) => (dispatch) => {
+    console.log('Call tou hogaya!');
+    const bearerToken = 'Bearer ' + token;
+    console.log(bearerToken)
+    dispatch(todosLoading());
+
+    return fetch(baseUrl + 'todos/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': bearerToken
+        },
+    })
+    .then(response => {
+        if(response.ok)
+            return response;
+
+        const error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+    }, error => { throw error; })
+    .then(response => response.json())
+    .then(todos => {
+        dispatch(addTodos(todos));
+        console.log('Then mein todos: ' + JSON.stringify(todos));
+    }, error => { throw error })
+    .catch(error => {
+        dispatch(todosFailed(error.message));
+        console.log(error.message);
     });
 }
