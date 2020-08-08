@@ -20,7 +20,7 @@ const TodoList = () => {
     const renderListItem = ({ item }) => {
         return(
             <ListItem title={item.title} 
-                    containerStyle={{ backgroundColor: '#000000' }}
+                    containerStyle={{ backgroundColor: '#309fba' }}
                     titleStyle={{ color: '#ffffff' }} />
         );
     } 
@@ -36,13 +36,11 @@ const TodoList = () => {
     else {
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-               {<FlatList style={styles.list} data={todos.todos}
+               <View style={styles.list}>
+               {<FlatList data={todos.todos}
                         renderItem={renderListItem}
                         key={item => item._id} />  }
-
-               { /*<Text>
-                    {JSON.stringify(todos.todos)}
-               </Text>*/ }
+               </View>
             </View>
         )
     }
@@ -50,8 +48,8 @@ const TodoList = () => {
 
 const styles = StyleSheet.create({
     list: {
-        height: '80%',
-        width: '80%'
+        height: '90%',
+        width: '90%'
     }
 });
 
