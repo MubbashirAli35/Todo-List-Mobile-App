@@ -20,7 +20,7 @@ const TodoList = () => {
     const renderListItem = ({ item }) => {
         return(
             <ListItem title={item.title} 
-                    containerStyle={{ backgroundColor: '#309fba' }}
+                    containerStyle={{ backgroundColor: '#309fba', marginBottom: 10 }}
                     titleStyle={{ color: '#ffffff' }} />
         );
     } 
@@ -49,7 +49,7 @@ const TodoList = () => {
 const styles = StyleSheet.create({
     list: {
         height: '90%',
-        width: '90%'
+        width: '90%', 
     }
 });
 

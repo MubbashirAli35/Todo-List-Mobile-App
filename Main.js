@@ -24,6 +24,17 @@ const mapDispatchToProps = dispatch => {
 
 function Main() {
     const StackNavigation = createStackNavigator();
+    const TodoStackNavigator = createStackNavigator();
+
+    const TodoListNavigator = () => {
+        return(
+            <TodoStackNavigator.Navigator initialRouteName='TodoList'
+                screenOptions={{ headerTitle: 'Todos',
+                                     }}>
+                <TodoStackNavigator.Screen name='TodoList' component={TodoList} />
+            </TodoStackNavigator.Navigator>
+        );
+    }
 
         // const { users, 
         //         loginUser,
@@ -36,7 +47,7 @@ function Main() {
                 screenOptions={{headerShown: false}}>
                 <StackNavigation.Screen name='SignIn' component={SignIn} />
                 <StackNavigation.Screen name='SignUp' component={SignUp} />
-                <StackNavigation.Screen name='TodoList' component={TodoList} />
+                <StackNavigation.Screen name='TodoList' component={TodoListNavigator} />
             </StackNavigation.Navigator>
         </NavigationContainer>
     );
