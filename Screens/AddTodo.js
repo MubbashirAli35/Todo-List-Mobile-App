@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View,
         Text,
         StyleSheet,
         TextInput } from 'react-native';
-import { Button } from 'react-native-elements'
+import { Button } from 'react-native-elements';
+
+import { postTodo } from '../redux/ActionCreators';
 
 const AddTodo = () => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const user = useSelector(state => state.users);
+    const dispatch = useDispatch();
 
     return(
         <View style={styles.mainContainer} >
@@ -33,7 +38,8 @@ const AddTodo = () => {
                     titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
                     title='Add' 
                     type='solid'
-                    onPress={() => {console.log('Title: ' + title + '\nDescription: ' + description); 
+                    onPress={() => {//console.log('Title: ' + title + '\nDescription: ' + description);
+                        dispatch(postTodo(title, description, user.token)); 
                         }}
                      />
             </View>

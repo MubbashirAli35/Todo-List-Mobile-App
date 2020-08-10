@@ -114,3 +114,34 @@ export const fetchTodos = (token) => (dispatch) => {
         console.log(error.message);
     });
 }
+
+export const postTodo = (title, description, token) => (dispatch) => {
+    console.log('Dispatch call hogaya');
+    const bearerToken = 'Bearer ' + token;
+
+    return fetch(baseUrl + 'todos/new', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': bearerToken
+        },
+        body: JSON.stringify({
+            title: title,
+            description: description
+        })
+    })
+    .then(response => {
+        if(response.ok)
+            return response;
+
+        const error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+    }, error => { throw error; })
+    .then(response => response.json())
+    .then((todo) => {
+        console.log(JSON.stringify(todo));
+        dispatch(fetchTodos(token));
+    }, error => { throw error; })
+    .catch(error => console.log(error.message));
+};
