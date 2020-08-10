@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { View, Text, ActivityIndicator, FlatList, StyleSheet } from 'react-native';
+import { View, ActivityIndicator, FlatList, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { fetchTodos } from '../redux/ActionCreators';
 
@@ -21,8 +22,16 @@ const TodoList = () => {
         return(
             <ListItem title={item.title} 
                     containerStyle={{ backgroundColor: '#309fba', marginBottom: 10 }}
-                    titleStyle={{ color: '#ffffff' }} />
-        );
+                    titleStyle={{ color: '#ffffff' }}
+                                    rightIcon={() => { return(item.isCompleted ? <FontAwesome5 
+                                                                                    name='check-circle'
+                                                                                    solid={true}
+                                                                                    color='#ffffff'
+                                                                                    size={16} /> : 
+                                                                                    <FontAwesome5 name='times-circle'
+                                                                                    solid={true}
+                                                                                    color='#ffffff'
+                                                                                    size={16} /> ) }} />);
     } 
 
     if(user.isLoading || todos.isLoading) {
