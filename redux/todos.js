@@ -7,7 +7,6 @@ export const Todos = (state = {
 }, action) => {
     switch(action.type) {
         case ActionTypes.TODOS_LOADING: {
-            console.log('Hello l');
 
             return {
                 ...state,

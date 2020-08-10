@@ -10,21 +10,6 @@ import { useDispatch } from 'react-redux'
 
 import { loginUser } from '../redux/ActionCreators';
 
-/*import { connect } from 'react-redux';
-import { loginUser } from '../redux/ActionCreators';
-
-const mapStateToProps = (state) => {
-    return {
-        users: state.users
-    };
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loginUser: (email, password) => dispatch(loginUser(email, password))
-    };
-} */
-
 function SignIn(props) {
 
     const [email, setEmail] = useState('');
