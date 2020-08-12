@@ -23,12 +23,23 @@ const TodoList = () => {
         console.log('Token: ' + user.token);
     }, [user.token]);
 
+    const ListRightIcons = () => {
+        return(
+            <View style={{ flexDirection: 'row' }} >
+                <FontAwesome5 name='edit' solid={false} 
+                    size={20} color='#ffffff' 
+                    onPress={() => console.log('Edit')} />
+                <FontAwesome5 name='trash-alt' solid={false} size={20} color='#ff0000' style={{ marginLeft: 20 }} />
+            </View>
+        );
+    }
+
     const renderListItem = ({ item }) => {
         return(
             <ListItem title={item.title} 
                     containerStyle={{ backgroundColor: '#309fba', marginBottom: 10, borderRadius: 20 }}
                     titleStyle={{ color: '#ffffff' }}
-                                    rightIcon={() => { return(item.isCompleted ? <FontAwesome5 
+                                    rightIcon={ ListRightIcons /*() => { return(item.isCompleted ? <FontAwesome5 
                                                         name='check-circle'
                                                         solid={true}
                                                         color='#ffffff'
@@ -36,7 +47,7 @@ const TodoList = () => {
                                                         <FontAwesome5 name='times'
                                                         solid={true}
                                                         color='#f70000'
-                                                        size={16} /> ) }}
+                                                        size={16} /> ) } */}
                     onPress={() => {
                         setTitle(item.title);
                         setDescription(item.description);
