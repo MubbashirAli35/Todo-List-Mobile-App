@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import { View, 
-        StyleSheet, 
-        Text, 
+        StyleSheet,  
         StatusBar,
-        TextInput } from 'react-native';
+         } from 'react-native';
 
-import { Button } from 'react-native-elements';
+import { Button, Text, Input } from 'react-native-elements';
 import { useDispatch } from 'react-redux'
 
 import { loginUser } from '../redux/ActionCreators';
@@ -23,20 +22,27 @@ function SignIn(props) {
             <StatusBar hidden={true} />
 
             <View style={styles.formContainer}>
-                <Text style={styles.formHeading}>
+                <Text h1 h1Style={{ fontWeight: 'normal' }} style={styles.formHeading}>
                     Sign In
                 </Text>
-                <TextInput style={styles.textInput} 
+                <Input inputStyle={styles.textInput}
+                    inputContainerStyle={{ borderBottomColor: '#000' }}
                     placeholder='Email Address'
+                    placeholderTextColor='#ffffff'
                     autoCapitalize='none'
-                    onChangeText={(email) => setEmail(email)} />
-                <TextInput style={styles.textInput}
+                    onChangeText={(email) => setEmail(email)}
+                     />
+                <Input inputStyle={styles.textInput}
+                    inputContainerStyle={{ borderBottomColor: '#000' }}
                     placeholder='Password'
+                    placeholderTextColor='#ffffff'
                     autoCapitalize='none'
                     onChangeText={(password) => setPassword(password)}
-                    secureTextEntry={true} />
+                    secureTextEntry={true}
+                     />
                 <Button 
-                    titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
+                    titleStyle={{ fontSize: 20, marginHorizontal: 20, color: '#000' }}
+                    buttonStyle={{ borderRadius: 25, backgroundColor: '#fff' }}
                     title='Sign In' 
                     type='solid'
                     onPress={() => {console.log('Email: ' + email + '\nPassword: ' + password); 
@@ -64,23 +70,21 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'center',
         backgroundColor: '#309fba',
-        justifyContent: 'space-around'
+        justifyContent: 'space-evenly'
     },
     formContainer: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        width: '80%',
-        height: '65%',
+        width: '85%',
+        height: '75%',
     },
     formHeading: {
         color: '#ffffff',
         fontSize: 35
     },
     textInput: {
-        borderBottomColor: '#666666',
-        borderBottomWidth: 1,
         fontSize: 15,
         width: '100%',
         color: '#ffffff'

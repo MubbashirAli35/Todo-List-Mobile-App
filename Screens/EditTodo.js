@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, Switch } from 'react-native';
+import { View, StyleSheet, TextInput, Switch } from 'react-native';
+import { Text, Button, Input } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 
 const EditTodo = ({ route }) => {
@@ -13,16 +14,16 @@ const EditTodo = ({ route }) => {
         <View style={styles.mainContainer} >
             
             <View style={styles.formContainer} >
-                <Text style={styles.formHeading}>
+                <Text h1 h1Style={{ fontWeight: 'normal' }} style={styles.formHeading}>
                     Edit Todo
                 </Text>
 
-                <TextInput style={styles.textInput} 
+                <Input style={styles.textInput} 
                     placeholder={title}
                     autoCapitalize='sentences'
                     onChangeText={title => setTitle(title)} />
 
-                <TextInput style={styles.textInput}
+                <Input style={styles.textInput}
                     placeholder={description}
                     autoCapitalize='sentences'
                     onChangeText={description => setDescription(description)}
@@ -41,14 +42,16 @@ const EditTodo = ({ route }) => {
                         trackColor={{ false: '#ff0000', true: '#00ff00' }} />
                 </View>
 
-                <Button 
-                    titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
-                    title='Edit' 
-                    type='solid'
-                    onPress={() => {console.log('Title: ' + title + '\nDescription: ' + description);
-                        //dispatch(postTodo(title, description, user.token)); 
-                        }}
-                     />
+                <View>
+                    <Button 
+                        titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
+                        title='Edit' 
+                        type='solid'
+                        onPress={() => {console.log('Title: ' + title + '\nDescription: ' + description);
+                            //dispatch(postTodo(title, description, user.token)); 
+                            }}
+                        />
+                </View>
             </View>
 
         </View>
@@ -61,15 +64,15 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'center',
         backgroundColor: '#309fba',
-        justifyContent: 'space-around'
+        justifyContent: 'space-evenly'
     },
     formContainer: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        width: '80%',
-        height: '65%',
+        width: '85%',
+        height: '75%',
     },
     formHeading: {
         color: '#ffffff',

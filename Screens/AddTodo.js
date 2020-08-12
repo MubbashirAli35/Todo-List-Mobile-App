@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { View,
-        Text,
-        StyleSheet,
-        TextInput } from 'react-native';
-import { Button } from 'react-native-elements';
+        StyleSheet } from 'react-native';
+import { Button, Text, Input } from 'react-native-elements';
 
 import { postTodo } from '../redux/ActionCreators';
 
@@ -19,23 +17,34 @@ const AddTodo = () => {
         <View style={styles.mainContainer} >
             
             <View style={styles.formContainer} >
-                <Text style={styles.formHeading}>
+                <Text h1 h1Style={{ fontWeight: 'normal' }} style={styles.formHeading}>
                     Add new Todo
                 </Text>
 
-                <TextInput style={styles.textInput} 
-                    placeholder='Title'
-                    autoCapitalize='sentences'
-                    onChangeText={title => setTitle(title)} />
+                <View style={{ width: '100%', height: '45%', justifyContent: 'space-between' }}>
+                    <Input inputStyle={styles.textInput}
+                        inputContainerStyle={{ borderBottomColor: '#000000' }} 
+                        placeholder=''
+                        placeholderTextColor='#ffffff'
+                        label='Title'
+                        labelStyle={{ color: '#ffffff' }}
+                        autoCapitalize='sentences'
+                        onChangeText={title => setTitle(title)} />
 
-                <TextInput style={styles.textInput}
-                    placeholder='Description'
-                    autoCapitalize='sentences'
-                    onChangeText={description => setDescription(description)}
-                    multiline={true} />
+                    <Input inputStyle={styles.textInput}
+                        inputContainerStyle={{ borderBottomColor: '#000000' }} 
+                        placeholder=''
+                        placeholderTextColor='#ffffff'
+                        label='Description'
+                        labelStyle={{ color: '#ffffff' }}
+                        autoCapitalize='sentences'
+                        onChangeText={description => setDescription(description)}
+                        multiline={true} />
+                </View>
 
                 <Button 
-                    titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
+                    titleStyle={{ fontSize: 20, marginHorizontal: 20, color: '#000000' }}
+                    buttonStyle={{ borderRadius: 25, backgroundColor: '#fff' }}
                     title='Add' 
                     type='solid'
                     onPress={() => {//console.log('Title: ' + title + '\nDescription: ' + description);
@@ -60,17 +69,15 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
-        width: '80%',
-        height: '65%',
+        justifyContent: 'space-between',
+        width: '85%',
+        height: '75%',
     },
     formHeading: {
         color: '#ffffff',
         fontSize: 35
     },
     textInput: {
-        borderBottomColor: '#666666',
-        borderBottomWidth: 1,
         fontSize: 15,
         width: '100%',
         color: '#ffffff'

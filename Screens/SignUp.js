@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import { View, 
         StyleSheet, 
-        Text, 
         StatusBar,
-        TextInput } from 'react-native';
+         } from 'react-native';
 
-import { Button } from 'react-native-elements';
+import { Button, Text, Input } from 'react-native-elements';
 
 export default function SignUp(props) {
 
@@ -18,24 +17,31 @@ export default function SignUp(props) {
             <StatusBar hidden={true} />
 
             <View style={styles.formContainer}>
-                <Text style={styles.formHeading}>
+                <Text h2 h2Style={{ fontWeight: 'normal' }} style={styles.formHeading}>
                     Sign Up
                 </Text>
-                <TextInput style={styles.textInput} 
+                <Input inputStyle={styles.textInput}
+                    inputContainerStyle={{ borderBottomColor: '#000' }} 
                     placeholder='Name'
+                    placeholderTextColor='#ffffff'
                     autoCapitalize='words'
                     onChangeText={(name) => setName(name)} />
-                <TextInput style={styles.textInput} 
+                <Input inputStyle={styles.textInput}
+                    inputContainerStyle={{ borderBottomColor: '#000' }} 
                     placeholder='Email Address'
+                    placeholderTextColor='#ffffff'
                     autoCapitalize='none'
                     onChangeText={(email) => setEmail(email)} />
-                <TextInput style={styles.textInput}
+                <Input inputStyle={styles.textInput}
+                    inputContainerStyle={{ borderBottomColor: '#000' }}
                     placeholder='Password'
+                    placeholderTextColor='#ffffff'
                     autoCapitalize='none'
                     onChangeText={(password) => setPassword(password)}
                     secureTextEntry={true} />
                 <Button 
-                    titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
+                    titleStyle={{ fontSize: 20, marginHorizontal: 20, color: '#000000' }}
+                    buttonStyle={{ borderRadius: 25, backgroundColor: '#fff' }}
                     title='Sign Up' 
                     type='solid'
                     onPress={() => console.log('Name: ' + name + '\nEmail: ' + email + '\nPassword: ' + password)}
@@ -68,16 +74,14 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        width: '80%',
-        height: '65%',
+        width: '85%',
+        height: '75%',
     },
     formHeading: {
         color: '#ffffff',
         fontSize: 35
     },
     textInput: {
-        borderBottomColor: '#666666',
-        borderBottomWidth: 1,
         fontSize: 15,
         width: '100%',
         color: '#ffffff'
