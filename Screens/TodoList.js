@@ -4,7 +4,7 @@ import { ListItem, Overlay, Divider, Button } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { fetchTodos } from '../redux/ActionCreators';
+import { fetchTodos, deleteTodo } from '../redux/ActionCreators';
 
 const TodoList = () => {
     const user = useSelector(state => state.users);
@@ -23,13 +23,17 @@ const TodoList = () => {
         console.log('Token: ' + user.token);
     }, [user.token]);
 
-    const ListRightIcons = () => {
+    const ListRightIcons = ({ todoId }) => {
         return(
             <View style={{ flexDirection: 'row' }} >
                 <FontAwesome5 name='edit' solid={false} 
                     size={20} color='#ffffff' 
                     onPress={() => console.log('Edit')} />
-                <FontAwesome5 name='trash-alt' solid={false} size={20} color='#ff0000' style={{ marginLeft: 20 }} />
+                <FontAwesome5 name='trash-alt' 
+                    solid={false} size={20} 
+                    color='#ff0000' 
+                    style={{ marginLeft: 20 }}
+                    onPress={() => dispatch(deleteTodo(todoId, user.token))} />
             </View>
         );
     }
@@ -39,7 +43,7 @@ const TodoList = () => {
             <ListItem title={item.title} 
                     containerStyle={{ backgroundColor: '#309fba', marginBottom: 10, borderRadius: 20 }}
                     titleStyle={{ color: '#ffffff' }}
-                                    rightIcon={ ListRightIcons /*() => { return(item.isCompleted ? <FontAwesome5 
+                                    rightIcon={ () => { return(<ListRightIcons todoId={item._id} />) } /*() => { return(item.isCompleted ? <FontAwesome5 
                                                         name='check-circle'
                                                         solid={true}
                                                         color='#ffffff'

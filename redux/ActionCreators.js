@@ -145,3 +145,32 @@ export const postTodo = (title, description, token) => (dispatch) => {
     }, error => { throw error; })
     .catch(error => console.log(error.message));
 };
+
+export const deleteTodo = (todoId, token) => (dispatch) => {
+    const bearerToken = 'Bearer ' + token;
+
+    return fetch(baseUrl + 'todos/delete/', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': bearerToken
+        },
+        body: JSON.stringify({
+            todoId: todoId
+        })
+    })
+    .then(response => {
+        if(response.ok)
+            return response;
+
+        const error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+    }, error => { throw error; })
+    .then(response => response.json())
+    .then((response) => {
+        console.log(JSON.stringify(response));
+        dispatch(fetchTodos(bearerToken));
+    }, error => { throw error })
+    .catch(error => console.log(error.message));
+}
