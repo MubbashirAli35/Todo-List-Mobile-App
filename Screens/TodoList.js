@@ -6,7 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { fetchTodos, deleteTodo } from '../redux/ActionCreators';
 
-const TodoList = () => {
+const TodoList = ({ navigation }) => {
     const user = useSelector(state => state.users);
     const todos = useSelector(state => state.todos);
     const [title, setTitle] = useState('');
@@ -28,7 +28,7 @@ const TodoList = () => {
             <View style={{ flexDirection: 'row' }} >
                 <FontAwesome5 name='edit' solid={false} 
                     size={20} color='#ffffff' 
-                    onPress={() => console.log('Edit')} />
+                    onPress={() => navigation.navigate('EditTodo')} />
                 <FontAwesome5 name='trash-alt' 
                     solid={false} size={20} 
                     color='#ff0000' 

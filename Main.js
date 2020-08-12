@@ -7,6 +7,7 @@ import SignIn from './Screens/SignIn';
 import SignUp from './Screens/SignUp';
 import TodoList from './Screens/TodoList';
 import AddTodo from './Screens/AddTodo';
+import EditTodo from './Screens/EditTodo';
 
 function Main() {
     const StackNavigation = createStackNavigator();
@@ -36,6 +37,7 @@ function Main() {
                 <StackNavigation.Screen name='SignUp' component={SignUp} />
                 <StackNavigation.Screen name='TodoList' component={TodoListNavigator} />
                 <StackNavigation.Screen  name='AddTodo' component={AddTodo} />
+                <StackNavigation.Screen name='EditTodo' component={EditTodo} />
             </StackNavigation.Navigator>
         </NavigationContainer>
     );
