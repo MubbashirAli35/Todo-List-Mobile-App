@@ -6,7 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { fetchTodos, deleteTodo } from '../redux/ActionCreators';
 
-const TodoList = ({ navigation }) => {
+const TodoList = ({ navigation, route }) => {
     const user = useSelector(state => state.users);
     const todos = useSelector(state => state.todos);
     const [title, setTitle] = useState('');
@@ -23,12 +23,17 @@ const TodoList = ({ navigation }) => {
         console.log('Token: ' + user.token);
     }, [user.token]);
 
-    const ListRightIcons = ({ todoId }) => {
+    const ListRightIcons = ({ todoId, completed, title, description }) => {
         return(
             <View style={{ flexDirection: 'row' }} >
                 <FontAwesome5 name='edit' solid={false} 
                     size={20} color='#ffffff' 
-                    onPress={() => navigation.navigate('EditTodo')} />
+                    onPress={() => navigation.navigate('EditTodo', {
+                        title: title,
+                        description: description,
+                        completed: completed,
+                        user: user
+                    })} />
                 <FontAwesome5 name='trash-alt' 
                     solid={false} size={20} 
                     color='#ff0000' 
@@ -43,7 +48,11 @@ const TodoList = ({ navigation }) => {
             <ListItem title={item.title} 
                     containerStyle={{ backgroundColor: '#309fba', marginBottom: 10, borderRadius: 20 }}
                     titleStyle={{ color: '#ffffff' }}
-                                    rightIcon={ () => { return(<ListRightIcons todoId={item._id} />) } /*() => { return(item.isCompleted ? <FontAwesome5 
+                                    rightIcon={ () => { return(<ListRightIcons 
+                                            todoId={item._id}
+                                            completed={item.isCompleted}
+                                            title={item.title}
+                                            description={item.description} />) } /*() => { return(item.isCompleted ? <FontAwesome5 
                                                         name='check-circle'
                                                         solid={true}
                                                         color='#ffffff'

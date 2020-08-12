@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { View, Text, StyleSheet, TextInput, Button, Switch } from 'react-native';
+import { useDispatch } from 'react-redux';
 
-const EditTodo = ({title, description, isCompleted}) => {
-    const [tempTitle, setTitle] = useState(title);
-    const [tempDescription, setDescription] = useState(description);
-    const user = useSelector(state => state.users);
+const EditTodo = ({ route }) => {
+    const [title, setTitle] = useState(route.params.title);
+    const [description, setDescription] = useState(route.params.description);
+    const [completed, setCompleted] = useState(route.params.completed)
+    const user = route.user;
     const dispatch = useDispatch();
 
     return(
@@ -27,11 +28,24 @@ const EditTodo = ({title, description, isCompleted}) => {
                     onChangeText={description => setDescription(description)}
                     multiline={true} />
 
+                <View style={{ flexDirection: 'row', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between',
+                    width: '100%' }} >
+                    <Text style={{ marginRight: 0, fontSize: 20, color: '#ffffff' }}>
+                        Completed
+                    </Text>
+
+                    <Switch onValueChange={() => setCompleted(!completed)}
+                        value={completed}
+                        trackColor={{ false: '#ff0000', true: '#00ff00' }} />
+                </View>
+
                 <Button 
                     titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
                     title='Edit' 
                     type='solid'
-                    onPress={() => {//console.log('Title: ' + title + '\nDescription: ' + description);
+                    onPress={() => {console.log('Title: ' + title + '\nDescription: ' + description);
                         //dispatch(postTodo(title, description, user.token)); 
                         }}
                      />
