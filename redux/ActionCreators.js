@@ -173,4 +173,36 @@ export const deleteTodo = (todoId, token) => (dispatch) => {
         dispatch(fetchTodos(bearerToken));
     }, error => { throw error })
     .catch(error => console.log(error.message));
-}
+};
+
+export const editTodo = (title, description, completed, todoId, token) => (dispatch) => {
+    const bearerToken = 'Bearer ' + token;
+
+    return fetch(baseUrl + 'todos/edit/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': bearerToken
+        },
+        body: JSON.stringify({
+            title: title, 
+            description: description,
+            isCompleted: completed,
+            todoId: todoId
+        })
+    })
+    .then(response => {
+        if(response.ok)
+            return response;
+
+        const error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+    }, error => { throw error })
+    .then(response => response.json())
+    .then((response) => {
+        console.log(JSON.stringify(response));
+        dispatch(fetchTodos(token));
+    }, error => { throw error; })
+    .catch(error => console.log(error.message));
+};

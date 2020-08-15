@@ -3,11 +3,14 @@ import { View, StyleSheet, Switch } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 
+import { editTodo } from '../redux/ActionCreators';
+
 const EditTodo = ({ route }) => {
     const [title, setTitle] = useState(route.params.title);
     const [description, setDescription] = useState(route.params.description);
     const [completed, setCompleted] = useState(route.params.completed)
-    const user = route.user;
+    const user = route.params.user;
+    const todoId = route.params.todoId;
     const dispatch = useDispatch();
 
     return(
@@ -51,8 +54,8 @@ const EditTodo = ({ route }) => {
                         buttonStyle={{ borderRadius: 25, backgroundColor: '#ffffff' }}
                         title='Edit' 
                         type='solid'
-                        onPress={() => {console.log('Title: ' + title + '\nDescription: ' + description);
-                            //dispatch(postTodo(title, description, user.token)); 
+                        onPress={() => {console.log('Title: ' + title + '\nDescription: ' + description + '\nComp' + completed);
+                            dispatch(editTodo(title, description, completed, todoId, user.token)); 
                             }}
                         />
                 </View>

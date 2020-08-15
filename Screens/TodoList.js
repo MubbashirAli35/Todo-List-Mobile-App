@@ -32,7 +32,8 @@ const TodoList = ({ navigation, route }) => {
                         title: title,
                         description: description,
                         completed: completed,
-                        user: user
+                        user: user,
+                        todoId: todoId
                     })} />
                 <FontAwesome5 name='trash-alt' 
                     solid={false} size={20} 
