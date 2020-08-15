@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Switch } from 'react-native';
+import { View, StyleSheet, Switch } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import { useDispatch } from 'react-redux';
 
@@ -18,13 +18,16 @@ const EditTodo = ({ route }) => {
                     Edit Todo
                 </Text>
 
-                <Input style={styles.textInput} 
-                    placeholder={title}
+                <Input inputStyle={styles.textInput} 
+                    defaultValue={title}
+                    inputContainerStyle={{ borderBottomColor: '#000000' }}
+                    containerStyle={{ width: '100%' }}
                     autoCapitalize='sentences'
                     onChangeText={title => setTitle(title)} />
 
-                <Input style={styles.textInput}
-                    placeholder={description}
+                <Input inputStyle={styles.textInput}
+                    inputContainerStyle={{ borderBottomColor: '#000000', width: '100%' }}
+                    defaultValue={description}
                     autoCapitalize='sentences'
                     onChangeText={description => setDescription(description)}
                     multiline={true} />
@@ -44,7 +47,8 @@ const EditTodo = ({ route }) => {
 
                 <View>
                     <Button 
-                        titleStyle={{ fontSize: 20, marginHorizontal: 20 }}
+                        titleStyle={{ fontSize: 20, marginHorizontal: 20, color: '#000000' }}
+                        buttonStyle={{ borderRadius: 25, backgroundColor: '#ffffff' }}
                         title='Edit' 
                         type='solid'
                         onPress={() => {console.log('Title: ' + title + '\nDescription: ' + description);
@@ -79,8 +83,6 @@ const styles = StyleSheet.create({
         fontSize: 35
     },
     textInput: {
-        borderBottomColor: '#666666',
-        borderBottomWidth: 1,
         fontSize: 15,
         width: '100%',
         color: '#ffffff'
