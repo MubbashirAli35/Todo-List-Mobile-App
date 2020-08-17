@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, FlatList, StyleSheet, Text } from 'react-native';
-import { ListItem, Overlay, Divider, Button } from 'react-native-elements';
+import { View, ActivityIndicator, FlatList, StyleSheet } from 'react-native';
+import { ListItem, Overlay, Divider, Button, Text } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -80,69 +80,84 @@ const TodoList = ({ navigation, route }) => {
         );
     }
     else {
-        return(
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-               <View style={styles.list}>
-               {<FlatList data={todos.todos}
-                        renderItem={renderListItem}
-                        key={item => item._id} />  }
-               </View>
-
-               <Overlay isVisible={todoVisible} 
-                    onBackdropPress={() => setTodoVisible(!todoVisible)}
-                    overlayStyle={styles.overlayStyle}>
-                    <Text style={{ fontSize: 22 }}>
-                        Title: {title}
+        if(todos.todos.length < 1) {
+            
+            return (
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} > 
+                    <Text h4>
+                        No Todos!
                     </Text>
-                    <Divider style={{ height: 1, 
-                            backgroundColor: '#e1e8ee', 
-                            alignSelf: 'stretch', 
-                            marginBottom: 10 }} />
-
-                    <Text style={{ marginBottom: 10 }}>
-                        Description: {description}
+                    <Text>
+                        Click on the feather Icon above to add one
                     </Text>
-
-                    {
-                        completed ?
-                        <View style={{ flexDirection: 'row' }}>
-                            <FontAwesome5 name='check'
-                                color='#00ff00'
-                                solid={true}
-                                size={16} />
-                            <Text style={{ marginLeft: 4 }}>
-                                Completed!
-                            </Text>
-                        </View> :
-                        <View style={{ flexDirection: 'row' }}>
-                            <FontAwesome5 name='times'
-                                color='#ff0000'
-                                solid={true}
-                                size={16} />
-                            <Text style={{ marginLeft: 6, color: '#ff0000' }}>
-                                Not Completed!
-                            </Text>
+                </View>
+            )
+        }
+        else {
+            return(
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+                   <View style={styles.list}>
+                   {<FlatList data={todos.todos}
+                            renderItem={renderListItem}
+                            key={item => item._id} />  }
+                   </View>
+    
+                   <Overlay isVisible={todoVisible} 
+                        onBackdropPress={() => setTodoVisible(!todoVisible)}
+                        overlayStyle={styles.overlayStyle}>
+                        <Text style={{ fontSize: 22 }}>
+                            Title: {title}
+                        </Text>
+                        <Divider style={{ height: 1, 
+                                backgroundColor: '#e1e8ee', 
+                                alignSelf: 'stretch', 
+                                marginBottom: 10 }} />
+    
+                        <Text style={{ marginBottom: 10 }}>
+                            Description: {description}
+                        </Text>
+    
+                        {
+                            completed ?
+                            <View style={{ flexDirection: 'row' }}>
+                                <FontAwesome5 name='check'
+                                    color='#00ff00'
+                                    solid={true}
+                                    size={16} />
+                                <Text style={{ marginLeft: 4 }}>
+                                    Completed!
+                                </Text>
+                            </View> :
+                            <View style={{ flexDirection: 'row' }}>
+                                <FontAwesome5 name='times'
+                                    color='#ff0000'
+                                    solid={true}
+                                    size={16} />
+                                <Text style={{ marginLeft: 6, color: '#ff0000' }}>
+                                    Not Completed!
+                                </Text>
+                            </View>
+                        }
+                   </Overlay>
+    
+                   <Overlay isVisible={modalVisible}
+                            onBackdropPress={() => setModalVisible(!modalVisible)}>
+                        <Text style={{ fontSize: 16, marginBottom: 10 }} >
+                            Wanna edit or delete this todo?
+                        </Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <Button title='Delete'
+                                buttonStyle={{ borderRadius: 20, paddingHorizontal: 10 }} />
+                            <Button title='Edit'
+                                buttonStyle={{ paddingHorizontal: 18, borderRadius: 20 }} />
+                            <Button title='Cancel'
+                                 buttonStyle={{ borderRadius: 20, paddingHorizontal: 10 }}
+                                 onPress={() => setModalVisible(!modalVisible)} />
                         </View>
-                    }
-               </Overlay>
-
-               <Overlay isVisible={modalVisible}
-                        onBackdropPress={() => setModalVisible(!modalVisible)}>
-                    <Text style={{ fontSize: 16, marginBottom: 10 }} >
-                        Wanna edit or delete this todo?
-                    </Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Button title='Delete'
-                            buttonStyle={{ borderRadius: 20, paddingHorizontal: 10 }} />
-                        <Button title='Edit'
-                            buttonStyle={{ paddingHorizontal: 18, borderRadius: 20 }} />
-                        <Button title='Cancel'
-                             buttonStyle={{ borderRadius: 20, paddingHorizontal: 10 }}
-                             onPress={() => setModalVisible(!modalVisible)} />
-                    </View>
-               </Overlay>
-            </View>
-        )
+                   </Overlay>
+                </View>
+            );
+        }
     }
 };
 
