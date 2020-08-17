@@ -11,7 +11,7 @@ export const Users = (state = {
                 ...state,
                 isLoading: true,
                 errMess: null,
-                token: null
+                token: null,
             };
 
         case ActionTypes.LOGIN_SUCCESS: {
@@ -20,7 +20,7 @@ export const Users = (state = {
                 ...state,
                 isLoading: false,
                 errMess: null,
-                token: action.payload
+                token: action.payload,
             };
         }
 
@@ -29,7 +29,7 @@ export const Users = (state = {
                 ...state,
                 isLoading: false, 
                 errMess: action.payload,
-                token: null
+                token: null,
             };
 
         default:

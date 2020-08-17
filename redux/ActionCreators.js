@@ -15,6 +15,8 @@ export const loginSuccess = (token) => {
 }
 
 export const loginFailed = (errMess) => {
+    console.log('Error agaya na');
+
     return {
         type:ActionTypes.LOGIN_FAILED,
         payload: errMess
