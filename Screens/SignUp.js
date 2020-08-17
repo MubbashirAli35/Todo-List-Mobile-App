@@ -3,14 +3,17 @@ import { View,
         StyleSheet, 
         StatusBar,
          } from 'react-native';
-
+import { useDispatch } from 'react-redux';
 import { Button, Text, Input } from 'react-native-elements';
+
+import { signUp } from '../redux/ActionCreators';
 
 export default function SignUp(props) {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
 
     return(
         <View style={styles.mainContainer}>
@@ -44,7 +47,9 @@ export default function SignUp(props) {
                     buttonStyle={{ borderRadius: 25, backgroundColor: '#fff' }}
                     title='Sign Up' 
                     type='solid'
-                    onPress={() => console.log('Name: ' + name + '\nEmail: ' + email + '\nPassword: ' + password)}
+                    onPress={() => {console.log('Name: ' + name + '\nEmail: ' + email + '\nPassword: ' + password);
+                        dispatch(signUp(name, email, password));
+                        props.navigation.navigate('TodoList');}}
                      />
             </View>
 

@@ -206,3 +206,34 @@ export const editTodo = (title, description, completed, todoId, token) => (dispa
     }, error => { throw error; })
     .catch(error => console.log(error.message));
 };
+
+export const signUp = (name, email, password) => (dispatch) => {
+    return fetch(baseUrl + 'users/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email, 
+            password: password
+        })
+    })
+    .then(response => {
+        if(response.ok)
+            return response;
+
+        const error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+    }, error => { throw error; })
+    .then(response => response.json())
+    .then(user => {
+        console.log(JSON.stringify(user));
+        dispatch(loginSuccess(user.token));
+    }, error => { throw error; })
+    .catch(error => {
+        console.log(error.message);
+        dispatch(loginFailed(error.message));
+    });
+};
