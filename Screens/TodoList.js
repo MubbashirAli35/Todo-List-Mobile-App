@@ -48,6 +48,8 @@ const TodoList = ({ navigation, route }) => {
         return(
             <ListItem title={item.title} 
                     containerStyle={{ backgroundColor: '#309fba', marginBottom: 10, borderRadius: 20 }}
+                    underlayColor='#fff'
+                    activeOpacity={0.7}
                     titleStyle={{ color: '#ffffff' }}
                                     rightIcon={ () => { return(<ListRightIcons 
                                             todoId={item._id}
@@ -67,8 +69,7 @@ const TodoList = ({ navigation, route }) => {
                         setDescription(item.description);
                         setTodoVisible(!todoVisible);
                         item.isCompleted ? setCompleted(true) : setCompleted(false);
-                    }}
-                    onLongPress={() => setModalVisible(!modalVisible)} />);
+                    }} />);
     } 
 
     if(user.isLoading || todos.isLoading) {

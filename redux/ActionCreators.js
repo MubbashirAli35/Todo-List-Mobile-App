@@ -15,7 +15,7 @@ export const loginSuccess = (token) => {
 }
 
 export const loginFailed = (errMess) => {
-    console.log('Error agaya na');
+    console.log('Error agaya na');r
 
     return {
         type:ActionTypes.LOGIN_FAILED,
@@ -172,7 +172,7 @@ export const deleteTodo = (todoId, token) => (dispatch) => {
     .then(response => response.json())
     .then((response) => {
         console.log(JSON.stringify(response));
-        dispatch(fetchTodos(bearerToken));
+        dispatch(fetchTodos(token));
     }, error => { throw error })
     .catch(error => console.log(error.message));
 };
