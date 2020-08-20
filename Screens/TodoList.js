@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, FlatList, StyleSheet, ToastAndroid } from 'react-native';
+import { View, ActivityIndicator, FlatList, StyleSheet } from 'react-native';
 import { ListItem, Overlay, Divider, Button, Text } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -75,7 +75,7 @@ const TodoList = ({ navigation, route }) => {
     if(user.isLoading || todos.isLoading) {
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-                <ActivityIndicator size='large' />
+                <ActivityIndicator animating={true} size='large' color='#309fba' />
             </View>
         );
     }

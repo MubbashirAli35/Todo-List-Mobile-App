@@ -1,16 +1,4 @@
 {
   "name": "TodoListApp",
-  "displayName": "TodoListApp",
-  "expo": {
-    "name": "Todo List",
-    "slug": "TodoListApp",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "android": {
-      "package": "com.mubbashirali.todolistapp",
-      "versionCode": 1
-    }
-  }
+  "displayName": "TodoListApp"
 }
